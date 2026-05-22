@@ -1,7 +1,4 @@
 /venv
-/eigen
-/pybind11
 /vcpkg
+*/__pycache__/*
 *.egg-info*
-*.pyd
-test.py
