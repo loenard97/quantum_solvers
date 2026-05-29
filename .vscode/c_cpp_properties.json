@@ -3,9 +3,11 @@
         {
             "name": "Win32",
             "includePath": [
-                "D:\\Projects\\Cpp\\numerical\\autodiff",
-                "D:\\Projects\\Cpp\\numerical\\eigen",
-                "C:\\Program Files (x86)\\nlopt\\include"
+                "${workspaceFolder}",
+                "${workspaceFolder}/pybind11/include",
+                "${workspaceFolder}/eigen",
+                "C:/Users/Dennis/AppData/Local/Programs/Python/Python314/include",
+                "C:/Users/Dennis/AppData/Local/Programs/Python/Python314/Lib/site-packages/pybind11/include"
             ],
             "defines": [
                 "_DEBUG",

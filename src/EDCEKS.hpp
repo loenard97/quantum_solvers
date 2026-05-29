@@ -2,12 +2,16 @@
 #include "_Propagators.hpp"
 #include "_KraussOperators.hpp"
 
-class EDCEND {
+
+class EDCEKS {
 public:
+    double gamma_cooling = 0.0;
+    double gamma_heating = 0.0;
+    double gamma_dephasing = 0.0;
     Matrix rho;
     Result result;
 
-    EDCEND() = default;
+    EDCEKS() = default;
 
     template<typename Iterator>
     inline std::vector<Matrix> run_chunk(
@@ -20,6 +24,9 @@ public:
         Matrix U;
         Matrix cur_rho;
         std::vector<Matrix> mean_rhos(n_steps, Matrix::Zero());
+        std::tuple<Matrix, Matrix> Kc = krauss_cooling(gamma_cooling, 0.5 * step);
+        std::tuple<Matrix, Matrix> Kh = krauss_heating(gamma_heating, 0.5 * step);
+        std::tuple<Matrix, Matrix> Kd = krauss_dephasing(gamma_dephasing, 0.5 * step);
 
         size_t i = 0;
         for (auto omega = OmegasBegin; omega != OmegasEnd; ++omega) {
@@ -27,7 +34,13 @@ public:
             U = su2_propagator(*omega, step);
 
             for (size_t t = 0; t < n_steps; ++t) {
+                apply_krauss_operators(cur_rho, Kc);
+                apply_krauss_operators(cur_rho, Kh);
+                apply_krauss_operators(cur_rho, Kd);
                 apply_propagator(cur_rho, U);
+                apply_krauss_operators(cur_rho, Kc);
+                apply_krauss_operators(cur_rho, Kh);
+                apply_krauss_operators(cur_rho, Kd);
                 mean_rhos[t] += (cur_rho - mean_rhos[t]) / double(i + 1);
             }
 

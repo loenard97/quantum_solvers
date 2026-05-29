@@ -6,5 +6,5 @@ build-backend = "setuptools.build_meta"
 name = "solvers"
 version = "0.1.0"
 description = "Quantum solvers with pybind11"
-authors = [{name="You"}]
+authors = [{name="Dennis Lönard"}]
 requires-python = ">=3.8"

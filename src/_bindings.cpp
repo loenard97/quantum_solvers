@@ -11,6 +11,7 @@ namespace py = pybind11;
 #include "EBCEND.hpp"
 #include "EDCCKD.hpp"
 #include "EDCCND.hpp"
+#include "EDCEKS.hpp"
 #include "EDCEKD.hpp"
 #include "EDCEND.hpp"
 #include "EDTCKD.hpp"
@@ -54,13 +55,28 @@ PYBIND11_MODULE(PYBIND_MODULE_NAME, m_solvers) {
         .def(py::init<>())
         .def("as_bloch_vector", &EDCCND::as_bloch_vector)
         .def("run", &EDCCND::run);
+    py::class_<EDCEKS>(m_solvers, "EDCEKS")
+        .def_readwrite("gamma_cooling", &EDCEKS::gamma_cooling)
+        .def_readwrite("gamma_heating", &EDCEKS::gamma_heating)
+        .def_readwrite("gamma_dephasing", &EDCEKS::gamma_dephasing)
+        .def_readwrite("rho", &EDCEKS::rho)
+        .def(py::init<>())
+        .def("run", &EDCEKS::run,
+            py::arg("Omegas"),
+            py::arg("step"),
+            py::arg("n_steps")
+        );
     py::class_<EDCEKD>(m_solvers, "EDCEKD")
         .def_readwrite("gamma_cooling", &EDCEKD::gamma_cooling)
         .def_readwrite("gamma_heating", &EDCEKD::gamma_heating)
         .def_readwrite("gamma_dephasing", &EDCEKD::gamma_dephasing)
         .def_readwrite("rho", &EDCEKD::rho)
         .def(py::init<>())
-        .def("run", &EDCEKD::run);
+        .def("run", &EDCEKD::run,
+            py::arg("Omegas"),
+            py::arg("step"),
+            py::arg("n_steps")
+        );
     py::class_<EDCEND>(m_solvers, "EDCEND")
         .def_readwrite("rho", &EDCEND::rho)
         .def(py::init<>())

@@ -9,6 +9,7 @@ public:
     double gamma_heating = 0.0;
     double gamma_dephasing = 0.0;
     Matrix rho;
+    Result result;
 
     EDCEKD() = default;
 
@@ -54,7 +55,6 @@ public:
         const double step, 
         const size_t n_steps
     ) {
-        Result result;
         result.steps.push_back(step);
         result.n_steps.push_back(n_steps);
 
@@ -69,6 +69,9 @@ public:
         if (Omegas.size() < 1000) {
             temp = run_chunk(begin, end, rho, step, n_steps);
             result.rhos.insert(result.rhos.end(), temp.begin(), temp.end());
+
+            if (!result.rhos.empty())
+                rho = result.rhos.back();
 
             return result;
         }
@@ -98,6 +101,9 @@ public:
             temp.push_back(mean / n_threads);
         }
         result.rhos.insert(result.rhos.end(), temp.begin(), temp.end());
+
+        if (!result.rhos.empty())
+            rho = result.rhos.back();
 
         return result;
     }

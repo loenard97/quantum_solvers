@@ -22,6 +22,7 @@ $cmd = @(
     "g++",
     "-O3",
     "-shared",
+    "-static",
     "-I./pybind11/include",
     "-I./eigen",
     "-I$pythonInclude",

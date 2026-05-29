@@ -23,6 +23,7 @@ def Solver(
         ("Ensemble", "Density Matrix", "Constant", "Cayley", "None", "Dense"): _CORE.EDCCND,
         ("Ensemble", "Density Matrix", "Time Dependent", "Cayley", "Krauss", "Dense"): _CORE.EDTCKD,
         ("Ensemble", "Density Matrix", "Time Dependent", "Cayley", "None", "Dense"): _CORE.EDTCND,
+        # ("Ensemble", "Density Matrix", "Constant", "Exact", "Krauss", "Sparse"): _CORE.EDCEKS,
         ("Ensemble", "Density Matrix", "Constant", "Exact", "Krauss", "Dense"): _CORE.EDCEKD,
         ("Ensemble", "Density Matrix", "Constant", "Exact", "None", "Dense"): _CORE.EDCEND,
         ("Single", "Bloch Vector", "Constant", "Exact", "None", "Dense"): _CORE.SBCEND,
