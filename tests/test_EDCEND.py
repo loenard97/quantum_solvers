@@ -11,7 +11,7 @@ class TestEDCEND(unittest.TestCase):
             state="Density Matrix",
             hamiltonian="Constant",
             propagator="Exact",
-            decay="Krauss",
+            decay="None",
             output="Dense",
         )
     

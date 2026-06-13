@@ -61,5 +61,6 @@ inline Matrix cayley_propagator(const Vector& Omega, const double dt) {
     double alpha_2 = alpha * alpha;
     Vector n = Omega / omega;
 
-    return (1.0-alpha_2)/(1.0+alpha_2) * I - (2.0*j*alpha)/(1.0+alpha_2) * (n(0) * SIGMA_X + n(1) * SIGMA_Y + n(2) * SIGMA_Z);
+    return (1.0-alpha_2)/(1.0+alpha_2) * I 
+        - (2.0*j*alpha)/(1.0+alpha_2) * (n(0) * SIGMA_X + n(1) * SIGMA_Y + n(2) * SIGMA_Z);
 }

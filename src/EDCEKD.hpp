@@ -105,6 +105,6 @@ public:
         if (!result.rhos.empty())
             rho = result.rhos.back();
 
-        return result;
+        return Result(result);
     }
 };
